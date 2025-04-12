@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ctf:
+    build: .
+    command: /usr/sbin/sshd -D
+    container_name: ez-ctf
+    hostname: ez-ctf
+    ports:
+      - "2222:22"   # example if you had SSH
+    tty: true
