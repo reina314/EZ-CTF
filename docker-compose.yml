@@ -1,10 +1,20 @@
 version: "3"
 services:
-  ctf:
-    build: .
+  victim:
+    build:
+      context: ./victim
     command: /usr/sbin/sshd -D
     container_name: ez-ctf
     hostname: ez-ctf
     ports:
       - "2222:22"   # example if you had SSH
     tty: true
+
+  submitter:
+    build:
+      context: ./submitter
+    container_name: ctf-submitter
+    ports:
+      - "8080:80"  # web UI for submitting flags
+    depends_on:
+      - victim
